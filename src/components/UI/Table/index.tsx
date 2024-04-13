@@ -24,7 +24,7 @@ const Table = ({
   const [rowSelection, setRowSelection] = useState<{ [key: string]: boolean }>(
     {}
   );
-  console.log("rowSelection", rowSelection);
+
   useImperativeHandle(mRef, () => ({
     setRowSelection,
   }));

@@ -1,7 +1,7 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import EmployeeTable from "./components/layouts/EmployeeTable";
-import TaskTable from "./components/layouts/TaskTable";
-import { useState } from "react";
+import TaskTable, { TaskTableHandle } from "./components/layouts/TaskTable";
+import { useRef } from "react";
 import Box from "@mui/material/Box";
 import { employees, employeeType, factories } from "./dummyData";
 
@@ -48,18 +48,18 @@ function App() {
    * Answer
    * 3 & 4
    */
-  const [name, setName] = useState<string | undefined>();
+  const taskTableRef = useRef<TaskTableHandle>(null);
 
   return (
     <Box sx={{ backgroundColor: "#e8e9f1", px: 4, py: 5 }}>
       <CssBaseline />
       <EmployeeTable
         onTableSelected={(name) => {
-          setName(name);
+          taskTableRef.current?.setName(name);
         }}
       />
       <Box mb={2} />
-      <TaskTable name={name} />
+      <TaskTable taskTableRef={taskTableRef} />
     </Box>
   );
 }

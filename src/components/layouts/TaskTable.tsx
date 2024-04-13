@@ -1,4 +1,12 @@
-import { useEffect, useMemo, useRef } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { MRT_ColumnDef } from "material-react-table";
 import Table, { DataTableHandle } from "../UI/Table";
 import Box from "@mui/material/Box/Box";
@@ -15,9 +23,18 @@ type TaskArr = Task & {
   index: number;
 };
 
-function TaskTable({ name }: { name: string | undefined }) {
-  const tableRef = useRef<DataTableHandle>(null);
+export type TaskTableHandle = {
+  setName: Dispatch<SetStateAction<string | undefined>>;
+};
 
+type Props = {
+  taskTableRef?: React.Ref<TaskTableHandle> | null;
+};
+
+function TaskTable({ taskTableRef }: Props) {
+  const [name, setName] = useState<string | undefined>();
+  const tableRef = useRef<DataTableHandle>(null);
+  console.log("name", name);
   const columns = useMemo<MRT_ColumnDef<Task>[]>(
     () => [
       {
@@ -58,6 +75,10 @@ function TaskTable({ name }: { name: string | undefined }) {
     }
   }, [name]);
 
+  useImperativeHandle(taskTableRef, () => ({
+    setName,
+  }));
+
   return (
     <Box
       sx={{
@@ -74,5 +95,9 @@ function TaskTable({ name }: { name: string | undefined }) {
     </Box>
   );
 }
+
+TaskTable.defaultProps = {
+  taskTableRef: null,
+};
 
 export default TaskTable;

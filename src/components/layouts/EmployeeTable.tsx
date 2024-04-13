@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { MRT_ColumnDef } from "material-react-table";
 import Table from "../UI/Table";
 import Box from "@mui/material/Box";
@@ -17,10 +17,6 @@ function EmployeeTable({
 }: {
   onTableSelected: (name: string | undefined) => void;
 }) {
-  const [nameSelected, setNameSelected] = useState<string | undefined>();
-
-  onTableSelected(nameSelected);
-
   const columns = useMemo<MRT_ColumnDef<Employee>[]>(
     () => [
       {
@@ -90,9 +86,9 @@ function EmployeeTable({
         data={employeeData}
         onTableSelected={(row, select) => {
           if (select) {
-            setNameSelected(row.name);
+            onTableSelected(row.name);
           } else {
-            setNameSelected(undefined);
+            onTableSelected(undefined);
           }
         }}
       />
