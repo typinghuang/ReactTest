@@ -1,11 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useImperativeHandle,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useImperativeHandle, useState } from "react";
 import MaterialReactTable from "material-react-table";
 
 export type DataTableHandle = {
@@ -41,17 +35,32 @@ const Table = ({
       enableColumnActions={false}
       columns={columns}
       data={data}
+      muiTableHeadCellProps={{
+        sx: () => ({
+          border: "1px solid transparent",
+          borderRadius: 2,
+        }),
+      }}
+      muiTablePaperProps={{
+        elevation: 0,
+        sx: () => ({
+          border: "1px solid #cccccc",
+          borderRadius: 2,
+        }),
+      }}
       muiTableBodyProps={{
-        sx: ({ palette }) => ({
+        sx: () => ({
           "& tr": {
             backgroundColor: "white",
           },
         }),
       }}
       muiTableBodyRowProps={({ row }) => ({
-        sx: ({ palette }) => ({
+        sx: () => ({
           "&:nth-of-type(odd)": {
-            backgroundColor: rowSelection[row.id] ? "rgba(167, 211, 255, 0.2)" : "#EEEEEE",
+            backgroundColor: rowSelection[row.id]
+              ? "rgba(167, 211, 255, 0.2)"
+              : "#EEEEEE",
           },
           // hide last border#EFF5FF
           "&:last-child td, &:last-child th": {
@@ -69,6 +78,12 @@ const Table = ({
         },
         selected: rowSelection[row.id],
       })}
+      muiBottomToolbarProps={{
+        sx: () => ({
+          border: "1px solid transparent",
+          borderRadius: 2,
+        }),
+      }}
       state={{ rowSelection }}
       // getRowId={(row): string => row.id}
     />

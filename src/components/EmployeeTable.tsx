@@ -1,7 +1,7 @@
-import CssBaseline from "@mui/material/CssBaseline";
 import { useMemo, useState } from "react";
 import { MRT_ColumnDef } from "material-react-table";
 import Table from "./Table";
+import Box from "@mui/material/Box";
 
 const employeeType = [
   { id: 1, name: "FullTime", work_begin: "09:00:00", work_end: "17:00:00" },
@@ -88,8 +88,8 @@ function EmployeeTable({
   });
 
   return (
-    <div>
-      <CssBaseline />
+    <Box sx={{ border: "1px solid #cccccc", background: "white", p: 2, borderRadius: 2 }}>
+      <Box py={3} fontWeight="bolder" color="#838383">Employee</Box>
       <Table
         columns={columns}
         data={employeeData}
@@ -101,7 +101,7 @@ function EmployeeTable({
           }
         }}
       />
-    </div>
+    </Box>
   );
 }
 

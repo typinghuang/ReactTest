@@ -1,7 +1,7 @@
-import CssBaseline from "@mui/material/CssBaseline";
 import { useEffect, useMemo, useRef } from "react";
 import { MRT_ColumnDef } from "material-react-table";
 import Table, { DataTableHandle } from "./Table";
+import Box from "@mui/material/Box/Box";
 
 const tasks = [
   { id: 1, title: "task01", duration: 60, name: "Alice" }, // min
@@ -53,11 +53,12 @@ function TaskTable({ name }: { name: string | undefined }) {
 
   useEffect(() => {
     if (name) {
+      // eslint-disable-next-line prefer-const
       let obj = {};
-      const taskArr: (Task & {index: number})[] = [];
+      const taskArr: (Task & { index: number })[] = [];
       tasks.forEach((item, index) => {
         if (item.name === name) {
-          taskArr.push({item, index});
+          taskArr.push({ item, index });
         }
       });
       taskArr.forEach((task) => {
@@ -70,10 +71,12 @@ function TaskTable({ name }: { name: string | undefined }) {
   }, [name]);
 
   return (
-    <div>
-      <CssBaseline />
+    <Box sx={{ border: "1px solid #cccccc", background: "white", p: 2, borderRadius: 2 }}>
+      <Box py={3} fontWeight="bolder" color="#838383">
+        Tasks
+      </Box>
       <Table columns={columns} data={tasks} customSelectRows mRef={tableRef} />
-    </div>
+    </Box>
   );
 }
 
