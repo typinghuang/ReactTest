@@ -2,21 +2,7 @@ import { useMemo, useState } from "react";
 import { MRT_ColumnDef } from "material-react-table";
 import Table from "./Table";
 import Box from "@mui/material/Box";
-
-const employeeType = [
-  { id: 1, name: "FullTime", work_begin: "09:00:00", work_end: "17:00:00" },
-  { id: 2, name: "MidTime", work_begin: "12:00:00", work_end: "21:00:00" },
-  { id: 3, name: "HalfTime", work_begin: "20:00:00", work_end: "00:00:00" },
-];
-
-const employees = [
-  { id: 1, name: "Alice", type: 2 },
-  { id: 2, name: "Bob", type: 3 },
-  { id: 3, name: "John", type: 2 },
-  { id: 4, name: "Karen", type: 1 },
-  { id: 5, name: "Miles", type: 3 },
-  { id: 6, name: "Henry", type: 1 },
-];
+import { employees, employeeType } from "../dummyData";
 
 type Employee = {
   id: number;
@@ -88,8 +74,17 @@ function EmployeeTable({
   });
 
   return (
-    <Box sx={{ border: "1px solid #cccccc", background: "white", p: 2, borderRadius: 2 }}>
-      <Box py={3} fontWeight="bolder" color="#838383">Employee</Box>
+    <Box
+      sx={{
+        border: "1px solid #cccccc",
+        background: "white",
+        p: 2,
+        borderRadius: 2,
+      }}
+    >
+      <Box py={3} fontWeight="bolder" color="#838383">
+        Employee
+      </Box>
       <Table
         columns={columns}
         data={employeeData}
