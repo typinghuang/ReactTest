@@ -1,6 +1,6 @@
 import CssBaseline from "@mui/material/CssBaseline";
-import EmployeeTable from "./components/EmployeeTable";
-import TaskTable from "./components/TaskTable";
+import EmployeeTable from "./components/layouts/EmployeeTable";
+import TaskTable from "./components/layouts/TaskTable";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import { employees, employeeType, factories } from "./dummyData";

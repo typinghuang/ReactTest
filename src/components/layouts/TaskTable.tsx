@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef } from "react";
 import { MRT_ColumnDef } from "material-react-table";
-import Table, { DataTableHandle } from "./Table";
+import Table, { DataTableHandle } from "../UI/Table";
 import Box from "@mui/material/Box/Box";
-import { tasks } from "../dummyData";
+import { tasks } from "../../dummyData";
 
 type Task = {
   id: number;

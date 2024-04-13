@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import { MRT_ColumnDef } from "material-react-table";
-import Table from "./Table";
+import Table from "../UI/Table";
 import Box from "@mui/material/Box";
-import { employees, employeeType } from "../dummyData";
+import { employees, employeeType } from "../../dummyData";
 
 type Employee = {
   id: number;
